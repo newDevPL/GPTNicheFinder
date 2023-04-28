@@ -1,0 +1,12 @@
+name: tshirt_trends
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pytrends
+  - pandas
+  - matplotlib
+  - openai
+  - pip
+  - pip:
+    - pillow

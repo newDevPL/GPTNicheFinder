@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script>
+        function status_update(status) {
+          const statusElement = document.getElementById('status');
+          statusElement.textContent = status;
+          console.log(status);
+        }
+
+        
+        </script>
+        
+  <meta charset="utf-8">
+  <title>T-Shirt Niche Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    form {
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    h3 {
+      margin-top: 50px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 70%;
+      margin: 50px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>T-Shirt Niche Finder</h1>
+  <form method="POST">
+    <label for="niche_input">Enter niches separated by commas:</label>
+    <br>
+    <input type="text" name="niche_input" id="niche_input" required>
+    <br>
+    <input type="submit" value="Find Top Niches">
+  </form>
+  {% if ideas_list is not none %}
+    <table>
+      <thead>
+        <tr>
+          <th>Niche</th>
+          <th>Idea</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for niche_dict in ideas_list %}
+            {% for idea in niche_dict['ideas'] %}
+                <tr>
+                    <td>{{ niche_dict['niche'] }}</td>
+                    <td>{{ idea }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  {% if growing_trends %}
+  <h3>Growing T-Shirt Trends</h3>
+  <ul>
+    {% for trend in growing_trends %}
+      <li>{{ trend }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+</body>
+</html>
