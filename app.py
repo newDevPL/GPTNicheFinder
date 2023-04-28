@@ -16,4 +16,4 @@ def index():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.10', debug=True, port=8081)
+    app.run(host='192.168.0.10', debug=True, port=8081) # Change this to match the IP address of your computer, select custom port if needed
