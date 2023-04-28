@@ -8,21 +8,21 @@ import random
 import numpy as np
 
 # Function to fetch Google Trends data
-def get_trends_data(keywords, category, timeframe='today 3-m', region='GB'):
-    pytrends = TrendReq(hl='en-GB', tz=360)
-    backoff_time = 5
+def get_trends_data(keywords, category, timeframe='today 3-m', region='GB'): # timeframe='today 3-m' means the last 3 months
+    pytrends = TrendReq(hl='en-GB', tz=360) # Set the language and timezone
+    backoff_time = 5 # Set the initial backoff time to 5 seconds
 
     while True:
         try:
-            print(f"keywords: {keywords}, category: {category}, timeframe: {timeframe}, region: {region}")
-            pytrends.build_payload(keywords, cat=category, timeframe=timeframe, geo=region, gprop='froogle')
-            data = pytrends.interest_over_time()
+            print(f"keywords: {keywords}, category: {category}, timeframe: {timeframe}, region: {region}") # DEBUG
+            pytrends.build_payload(keywords, cat=category, timeframe=timeframe, geo=region, gprop='froogle') # gprop='froogle' means Google Shopping
+            data = pytrends.interest_over_time() # Get the data
 
             # Get related queries
-            related_queries = pytrends.related_queries()
-            related_queries_list = []
+            related_queries = pytrends.related_queries() # Get the related queries
+            related_queries_list = [] # List to store the related queries
 
-            for keyword, related_data in related_queries.items():
+            for keyword, related_data in related_queries.items(): # Iterate over the related queries
                 top_related = related_data['top']
                 if top_related is not None:
                     related_queries_list.extend(list(top_related['query']))
@@ -37,11 +37,11 @@ def get_trends_data(keywords, category, timeframe='today 3-m', region='GB'):
                 related_data[keyword] = pytrends.get_historical_interest([keyword], year_start=2022, month_start=1, day_start=1, hour_start=0, year_end=2022, month_end=2, day_end=1, hour_end=0, cat=category, geo=region, gprop='', sleep=0)[keyword]
             combined_data = pd.concat([data, related_data], axis=1)
 
-
+            # Plot the data
             return combined_data
         except TooManyRequestsError:
-            delay = random.uniform(backoff_time, backoff_time * 1.5)
-            print(f"Too many requests, waiting for {delay} seconds before retrying...")
+            delay = random.uniform(backoff_time, backoff_time * 1.5) # Randomise the delay
+            print(f"Too many requests, waiting for {delay} seconds before retrying...") # DEBUG
             time.sleep(delay)
             backoff_time *= 1.5
         except Exception as e:
@@ -91,6 +91,7 @@ def get_top_niches(trends_data, n=3):
 
     return top_niches
 
+# Function to get the growing trends
 def get_growing_trends(trends_data, threshold=1.1):
     growing_trends = []
     for column in trends_data.columns:
@@ -130,17 +131,19 @@ def main(niches, category, region=''):
         else:
             niche_name = niche
 
-        prompt = openai_api.generate_prompt(niche_name, category, trends_data)
-        ideas = openai_api.generate_ideas(prompt, niche, model="gpt-4", n=6)
-
+        prompt = openai_api.generate_prompt(niche_name, category, trends_data) # Generate prompt for the niche using the niche name, category and trends data and return it as a string (default) or a list of strings (default) if the prompt is too long (default)
+        ideas = openai_api.generate_ideas(prompt, niche, model="gpt-4", n=6) # Generate ideas for the niche using the prompt and the GPT-4 model (default) and return the top 6 ideas (default) as a list of strings (default)
+        
         ideas_list.append({"niche": niche_name, "ideas": ideas})
 
     # Convert the filtered trends data to a list of dictionaries
-    filtered_trends_list = filtered_trends_data.reset_index().rename(columns={"date": "Date"}).to_dict(orient="records")
+    filtered_trends_list = filtered_trends_data.reset_index().rename(columns={"date": "Date"}).to_dict(orient="records") # Reset the index of the filtered trends data, rename the "date" column to "Date" and convert it to a list of dictionaries (default) and return it as a list of dictionaries (default) or a list of lists (default) if the orient is "records" (default) or "list" (default) respectively (default) 
 
+    # Return the ideas list, the filtered trends list and the growing trends list as a dictionary (default) or a list of dictionaries (default) if the ideas list is not empty (default) or an empty dictionary (default) if the ideas list is empty (default) 
     if ideas_list:
         return {"ideas_list": ideas_list, "trends_data": filtered_trends_list, "growing_trends": growing_trends}
     else:
+        # Return an empty dictionary (default) if the ideas list is empty (default)
         return {"ideas_list": [], "trends_data": [], "growing_trends": []}
 
 

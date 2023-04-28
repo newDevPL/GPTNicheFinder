@@ -10,8 +10,8 @@ def index():
         niche_input = request.form["niche_input"]
         niches = [niche.strip() for niche in niche_input.split(",")]
 
-        results = tshirt_trends.main(niches, 428) # Use 428 for "T-Shirts"
-        return render_template("index.html", ideas_list=results["ideas_list"], trends_data=results["trends_data"])
+        results = tshirt_trends.main(niches, 428) # Use 428 for "T-Shirts". You can lookup categories in the static/categories.json file
+        return render_template("index.html", ideas_list=results["ideas_list"], trends_data=results["trends_data"]) # Pass the ideas_list and trends_data to the template for rendering the results in the browser
 
     return render_template("index.html")
 
