@@ -104,6 +104,7 @@ def get_growing_trends(trends_data, threshold=1.1):
     return growing_trends
 
 
+
 # Main function
 def main(niches, category, region=''):
     # Initialize ideas_list
@@ -132,7 +133,7 @@ def main(niches, category, region=''):
             niche_name = niche
 
         prompt = openai_api.generate_prompt(niche_name, category, trends_data) # Generate prompt for the niche using the niche name, category and trends data and return it as a string (default) or a list of strings (default) if the prompt is too long (default)
-        ideas = openai_api.generate_ideas(prompt, niche, model="gpt-4", n=6) # Generate ideas for the niche using the prompt and the GPT-4 model (default) and return the top 6 ideas (default) as a list of strings (default)
+        ideas = openai_api.generate_ideas(prompt, niche, model="gpt-3.5-turbo", n=2) # Generate ideas for the niche using the prompt and the gpt-3.5-turbo model (default) and return the top 6 ideas (default) as a list of strings (default)
         
         ideas_list.append({"niche": niche_name, "ideas": ideas})
 
