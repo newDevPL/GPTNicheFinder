@@ -1,4 +1,13 @@
-Rename the file "rename_this_to_OpenAI.API" to OpenAI.API and replace its content with your OpenAI API key
-In the app.py file replace the IP in the line 19 with the IP address of your computer and choose your preffered port (app.run(host='192.168.0.10', debug=True, port=8081))
-Run the start.bat file
-The default model being used is gpt-3.5-turbo, if you want to use gpt-4 please replace all instances of gpt-3.5-turbo to gpt-4 in files: openai_api.py and tshirt_trends.py (it can get really expensive)
+1. Rename the file "rename_this_to_OpenAI.API" to OpenAI.API and replace its content with your OpenAI API key
+2. In the app.py file replace the IP in the line 19 with the IP address of your computer and choose your preffered port (app.run(host='192.168.0.10', debug=True, port=8081))
+3. Run the start.bat file
+4. Open your browser using the link in the command prompt
+5. Choose your GPT model, GPT 4 provides sloghtly better and more consistent results, while GPT 3.5 Turbo is cheaper to use and not everyone can access GPT 4 yet
+6. Enter up to 5, comma separated, keywords or phrases. Keywords will give you broader results
+7. Wait for the results, it might take up to few minutes
+
+
+Known issues:
+
+Entering more than 5 keywords or phrases will crash the application
+Sometimes Google Trends returns "isPartial" which is interpreted as a niche by GPT and it starts hallucinating suggestions     
