@@ -105,9 +105,16 @@
 <body>
   <h1>T-Shirt Niche Finder</h1>
   <form method="POST">
-    <label for="niche_input">Enter niches separated by commas:</label>
+    <label for="niche_input">Enter up to 5 niches separated by commas:</label>
     <br>
     <input type="text" name="niche_input" id="niche_input" required>
+    <br>
+    <label for="model_choice">Choose a model:</label>
+    <br>
+    <input type="radio" id="gpt4" name="model_choice" value="gpt-4" checked>
+    <label for="gpt4">GPT-4</label>
+    <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo">
+    <label for="gpt35turbo">GPT-3.5-turbo</label>
     <br>
     <input type="submit" value="Find Top Niches">
   </form>
