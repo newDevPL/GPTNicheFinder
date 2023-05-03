@@ -14,5 +14,4 @@ Open the GPTNicheFinder folder and do the below:
 
 Known issues:
 
-Entering more than 5 keywords or phrases will crash the application
-Sometimes Google Trends returns "isPartial" which is interpreted as a niche by GPT and it starts hallucinating suggestions     
+Entering more than 5 keywords or phrases will crash the application    
