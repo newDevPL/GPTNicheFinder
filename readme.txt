@@ -1,4 +1,4 @@
-First clone the repo by making a new folder. Open command line or your terminal and navigate to your folder. Click on Code at the top of the page and the Download ZIP and extract it somewhere; or type in:
+First clone the repo by making a new folder. Open command line or your terminal and navigate to your folder. Click on Code at the top of the page and then on Download ZIP and extract it somewhere; or type in:
 git clone https://github.com/newDevPL/GPTNicheFinder.git
 
 Open the GPTNicheFinder folder and do the below:
