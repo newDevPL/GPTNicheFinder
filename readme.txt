@@ -1,3 +1,8 @@
+First clone the repo by making a new folder. Open command line or your terminal and navigate to your folder. Click on Code at the top of the page and the Download ZIP and extract it somewhere; or type in:
+git clone https://github.com/newDevPL/GPTNicheFinder.git
+
+Open the GPTNicheFinder folder and do the below:
+
 1. Rename the file "rename_this_to_OpenAI.API" to OpenAI.API and replace its content with your OpenAI API key
 2. In the app.py file replace the IP in the line 19 with the IP address of your computer and choose your preffered port (app.run(host='192.168.0.10', debug=True, port=8081))
 3. Run the start.bat file
