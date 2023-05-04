@@ -7,48 +7,53 @@
           statusElement.textContent = status;
           console.log(status);
         }
-
-        
-        </script>
-        
+    </script>
   <meta charset="utf-8">
   <title>T-Shirt Niche Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #1a1a1a;
+      background-color: #212121;
       color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
       text-align: center;
       margin-top: 50px;
       color: #fff;
+      font-weight: 600;
+      font-size: 48px;
     }
 
     form {
       width: 50%;
-      margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      justify-items: center;
       margin-top: 50px;
     }
 
     label {
-      display: block;
-      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
     }
 
     input[type="text"] {
       width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
+      border: 2px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
       background-color: #333;
       color: #f1f1f1;
+      font-size: 16px;
     }
 
     input[type="submit"] {
@@ -58,6 +63,10 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+		  max-width: 300px; /* Add this line to set a maximum width */
     }
 
     input[type="submit"]:hover {
@@ -67,6 +76,8 @@
     h3 {
       margin-top: 50px;
       color: #fff;
+      font-weight: 600;
+      font-size: 24px;
     }
 
     ul {
@@ -78,6 +89,7 @@
     li {
       margin-bottom: 10px;
       color: #f1f1f1;
+      font-size: 16px;
     }
 
     table {
@@ -92,30 +104,46 @@
       text-align: left;
       background-color: #333;
       color: #f1f1f1;
+      font-size: 16px;
     }
 
     th {
       background-color: #4CAF50;
       color: white;
+      font-weight: 600;
     }
 
-  </style>
+    .radio-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
 
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+	  
+	 @media only screen and (max-width: 600px) {
+  		input[type="submit"] {
+    		width: 100%;
+  }
+}
+
+  </style>
 </head>
 <body>
-  <h1>T-Shirt Niche Finder</h1>
+  <h1>GPT T-Shirt Niche Finder</h1>
   <form method="POST">
     <label for="niche_input">Enter up to 5 niches separated by commas:</label>
-    <br>
     <input type="text" name="niche_input" id="niche_input" required>
-    <br>
     <label for="model_choice">Choose a model:</label>
-    <br>
-    <input type="radio" id="gpt4" name="model_choice" value="gpt-4" checked>
-    <label for="gpt4">GPT-4</label>
-    <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo">
-    <label for="gpt35turbo">GPT-3.5-turbo</label>
-    <br>
+    <div class="radio-wrapper">
+      <input type="radio" id="gpt4" name="model_choice" value="gpt-4" checked>
+      <label for="gpt4">GPT-4</label>
+      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo">
+      <label for="gpt35turbo">GPT-3.5-turbo</label>
+    </div>
     <input type="submit" value="Find Top Niches">
   </form>
   {% if ideas_list is not none %}

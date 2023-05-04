@@ -106,7 +106,7 @@ def get_growing_trends(trends_data, threshold=1.1):
         if is_growing:
             growing_trends.append(column)
     return growing_trends
-
+    
 
 
 # Main function
