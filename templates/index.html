@@ -151,7 +151,9 @@
       <thead>
         <tr>
           <th>Niche</th>
-          <th>Idea</th>
+          <th>Slogan</th>
+          <th>SDPROMPT</th>
+          <th>Score</th>
         </tr>
       </thead>
       <tbody>
@@ -159,12 +161,15 @@
             {% for idea in niche_dict['ideas'] %}
                 <tr>
                     <td>{{ niche_dict['niche'] }}</td>
-                    <td>{{ idea }}</td>
+                    <td>{{ idea['slogan'] }}</td>
+                    <td>{{ idea['sdprompt'] }}</td>
+                    <td>{{ idea['score'] }}</td>
                 </tr>
             {% endfor %}
         {% endfor %}
       </tbody>
     </table>
+
   {% endif %}
   {% if growing_trends %}
   <h3>Growing T-Shirt Trends</h3>
