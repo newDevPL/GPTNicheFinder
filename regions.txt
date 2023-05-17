@@ -1,0 +1,49 @@
+AR, Argentina
+AU, Australia
+AT, Austria
+BE, Belgium
+BR, Brazil
+CA, Canada
+CL, Chile
+CN, China
+CO, Colombia
+DK, Denmark
+DZ, Algeria
+EG, Egypt
+ES, Spain
+ET, Ethiopia
+FI, Finland
+FR, France
+DE, Germany
+GH, Ghana
+IE, Ireland
+IN, India
+ID, Indonesia
+IT, Italy
+JP, Japan
+KE, Kenya
+KR, South Korea
+MY, Malaysia
+MX, Mexico
+MA, Morocco
+NL, Netherlands
+NG, Nigeria
+NO, Norway
+PE, Peru
+PH, Philippines
+PL, Poland
+PT, Portugal
+RU, Russia
+SE, Sweden
+SG, Singapore
+ZA, South Africa
+ES, Spain
+SE, Sweden
+CH, Switzerland
+TH, Thailand
+TN, Tunisia
+TR, Turkey
+GB, United Kingdom
+US, United States
+VN, Vietnam
+ZA, South Africa

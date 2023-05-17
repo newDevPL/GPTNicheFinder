@@ -1,6 +1,7 @@
 import openai
 import os
 import re
+from utils import get_regions
 
 def read_api_key(file_path="OpenAI.API"):
     print(f"Reading API key from file: {file_path}")  # DEBUG

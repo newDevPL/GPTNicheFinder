@@ -6,7 +6,9 @@ import openai_api
 import time
 import random
 import numpy as np
+import utils
 from sklearn.linear_model import LinearRegression
+from utils import get_regions
 
 # Function to fetch Google Trends data
 def get_trends_data(keywords, category, timeframe='today 12-m', region='US'): # timeframe='today 3-m' means the last 3 months
@@ -199,7 +201,7 @@ def get_trend_slope(series):
     return slope
 
 
-def main(niches, category, region='', model_choice='gpt-4', timeframe='today 12-m'):
+def main(niches, category, region=None, model_choice='gpt-4', timeframe='today 12-m'):
     print(f"Starting main function with niches: {niches}, category: {category}, region: {region}, model_choice: {model_choice}")  # DEBUG
 
     # Initialize ideas_list

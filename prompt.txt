@@ -2,7 +2,7 @@ Based on the data you've been provided, generate a creative t-shirt design idea 
 
 Please analyze the given data points: maximum interest score of {max_interest}, minimum interest score of {min_interest}, and average interest score of {mean_interest}. Use these data points to create a unique scoring algorithm that estimates the potential success of each idea.
 
-Consider recent trends and popular themes in the {niche} niche to create unique and catchy slogans for t-shirt designs. After each slogan, generate a Stable Diffusion Prompt (SDPROMPT) to help visualize the accompanying graphic design that would complement the slogan. 
+Consider recent trends and popular themes in the {niche} niche to create unique and catchy slogans for t-shirt designs. Make sure the slogan is generated in the language from the region chosen by the user. After each slogan, generate a Stable Diffusion Prompt (SDPROMPT) to help visualize the accompanying graphic design that would complement the slogan. 
 
 Estimate a score for each idea based on the provided data and your scoring algorithm. Please discard ideas with a score of 0 and do not include them in your response. 
 

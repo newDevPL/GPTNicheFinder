@@ -136,23 +136,30 @@
   <h1>GPT T-Shirt Niche Finder</h1>
   <form method="POST">
     <label for="niche_input">Enter up to 5 niches separated by commas:</label>
-    <input type="text" name="niche_input" id="niche_input" required>
+    <input type="text" name="niche_input" value="{{ session.get('niche_input', '') }}" id="niche_input" required>
     <label for="model_choice">Choose a model:</label>
     <div class="radio-wrapper">
-      <input type="radio" id="gpt4" name="model_choice" value="gpt-4" checked>
+      <input type="radio" id="gpt4" name="model_choice" value="gpt-4" {% if session.get('model_choice', '') == 'gpt-4' %}checked{% endif %}>
       <label for="gpt4">GPT-4</label>
-      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo">
+      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo" {% if session.get('model_choice', '') == 'gpt-3.5-turbo' %}checked{% endif %}>
       <label for="gpt35turbo">GPT-3.5-turbo</label>
     </div>
     <label for="timeframe">Choose a timeframe:</label>
     <select name="timeframe" id="timeframe">
-      <option value="today 1-m">Past 1 month</option>
-      <option value="today 3-m">Past 3 months</option>
-      <option value="today 12-m">Past 12 months</option>
-      <option value="all">All time</option>
+      <option value="today 1-m" {% if session.get('timeframe', '') == 'today 1-m' %}selected{% endif %}>Past 1 month</option>
+      <option value="today 3-m" {% if session.get('timeframe', '') == 'today 3-m' %}selected{% endif %}>Past 3 months</option>
+      <option value="today 12-m" {% if session.get('timeframe', '') == 'today 12-m' %}selected{% endif %}>Past 12 months</option>
+      <option value="all" {% if session.get('timeframe', '') == 'all' %}selected{% endif %}>All time</option>
+    </select>
+    <label for="region_choice">Choose a region:</label>
+    <select id="region_choice" name="region">
+      {% for region in regions %}
+        <option value="{{ region[0] }}" {% if session.get('region', '') == region[0] %}selected{% endif %}>{{ region[1] }}</option>
+      {% endfor %}
     </select>
     <input type="submit" value="Find Top Niches">
-  </form>
+</form>
+
   {% if ideas_list is not none %}
     <table>
       <thead>
