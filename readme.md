@@ -2,7 +2,7 @@
 
 Welcome to GPTNicheFinder, a powerful niche research tool powered by Google Trends data and OpenAI's GPT model. This application provides a streamlined approach to identify profitable niche markets by leveraging data-driven insights and cutting-edge artificial intelligence. Whether you're an entrepreneur, marketer, or enthusiast looking for untapped opportunities, GPTNicheFinder is here to assist you.
 
-Key Features:
+# Key Features:
 
 Google Trends Integration: GPTNicheFinder fetches Google Trends data, including interest over time, related queries, and suggestions, to analyze emerging trends and identify niche opportunities. This comprehensive approach ensures that you have a holistic view of the market landscape.
 
@@ -27,7 +27,7 @@ git clone https://github.com/newDevPL/GPTNicheFinder.git
 
 2. Rename the file `rename_this_to_OpenAI.API` to `OpenAI.API` and replace its content with your OpenAI API key.
 
-3. In the `app.py` file, replace the IP in line 22 with the IP address of your computer and choose your preferred port (e.g., `app.run(host='192.168.0.10', debug=True, port=8081)`).
+3. In the `app.py` file, replace the IP in line 48 with the IP address of your computer and choose your preferred port (e.g., `app.run(host='192.168.0.10', debug=True, port=8081)`).
 
 ## Running the Application
 
