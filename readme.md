@@ -27,7 +27,7 @@ git clone https://github.com/newDevPL/GPTNicheFinder.git
 
 2. Rename the file `rename_this_to_OpenAI.API` to `OpenAI.API` and replace its content with your OpenAI API key.
 
-3. In the `app.py` file, replace the IP in line 19 with the IP address of your computer and choose your preferred port (e.g., `app.run(host='192.168.0.10', debug=True, port=8081)`).
+3. In the `app.py` file, replace the IP in line 22 with the IP address of your computer and choose your preferred port (e.g., `app.run(host='192.168.0.10', debug=True, port=8081)`).
 
 ## Running the Application
 
