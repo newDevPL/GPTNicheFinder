@@ -1,5 +1,17 @@
 # GPTNicheFinder - GitHub README
 
+Welcome to GPTNicheFinder, a powerful niche research tool powered by Google Trends data and OpenAI's GPT model. This application provides a streamlined approach to identify profitable niche markets by leveraging data-driven insights and cutting-edge artificial intelligence. Whether you're an entrepreneur, marketer, or enthusiast looking for untapped opportunities, GPTNicheFinder is here to assist you.
+
+Key Features:
+
+Google Trends Integration: GPTNicheFinder fetches Google Trends data, including interest over time, related queries, and suggestions, to analyze emerging trends and identify niche opportunities. This comprehensive approach ensures that you have a holistic view of the market landscape.
+
+OpenAI's GPT Model: By harnessing the power of OpenAI's GPT model, GPTNicheFinder generates niche ideas that are highly relevant and aligned with your chosen keywords. The model generates creative prompts and slogans, providing you with valuable insights to kickstart your niche exploration.
+
+Flask Web Interface: The user-friendly Flask-based web interface enables you to easily input up to 5 keywords or phrases and receive niche suggestions in real-time. The interface is intuitive, allowing you to navigate through the app effortlessly.
+
+Customization and Flexibility: GPTNicheFinder offers customization options, including the ability to configure the IP address and port to match your environment. This flexibility ensures seamless integration into your existing workflow.
+
 ## Installation
 
 1. First, clone the repository by creating a new folder on your local machine. Open your preferred command-line interface (e.g., terminal, PowerShell) or file explorer (e.g., Windows Explorer), and navigate to the newly created folder.
@@ -31,3 +43,11 @@ git clone https://github.com/newDevPL/GPTNicheFinder.git
 ## Known Issues
 
 - Entering more than 5 keywords or phrases will crash the application.
+
+## Contributing:
+
+Contributions to GPTNicheFinder are welcome! If you have ideas for improvements, bug fixes, or new features, feel free to contribute by submitting a pull request. Your contributions will help enhance the tool and make it even more valuable for the community.
+
+## License:
+
+GPTNicheFinder is released under the Unlicense license, which allows you to use, modify, and distribute the application without any restrictions. You can find the license details in the repository.
