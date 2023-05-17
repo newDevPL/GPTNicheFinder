@@ -42,7 +42,7 @@ git clone https://github.com/newDevPL/GPTNicheFinder.git
 
 ## Known Issues
 
-- Entering more than 5 keywords or phrases will crash the application.
+- None
 
 ## Contributing:
 
