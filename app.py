@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 import tshirt_trends
 from tshirt_trends import get_top_niches
 import os
@@ -18,7 +18,11 @@ def index():
         region = request.form.get('region')
         timeframe = request.form['timeframe']  # Get the selected timeframe from the form
         niches = [niche.strip() for niche in niche_input.split(",")]
-
+        if len(niches) > 5:
+            flash("Please enter up to 5 niches separated by commas.")
+            return redirect(url_for("index"))
+        print(f"Detected more than 5 niches, please select up to 5 niches!")
+        
         results = tshirt_trends.main(niches, 428, region=region, model_choice=model_choice, timeframe=timeframe) # Use 428 for "T-Shirts". You can lookup categories in the static/categories.json file
 
         # Filter out None values from ideas_list

@@ -141,7 +141,7 @@
     <div class="radio-wrapper">
       <input type="radio" id="gpt4" name="model_choice" value="gpt-4" {% if session.get('model_choice', '') == 'gpt-4' %}checked{% endif %}>
       <label for="gpt4">GPT-4</label>
-      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo" {% if session.get('model_choice', '') == 'gpt-3.5-turbo' %}checked{% endif %}>
+      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo" {% if session.get('model_choice', '') == 'gpt-3.5-turbo' or session.get('model_choice') is none %}checked{% endif %}>
       <label for="gpt35turbo">GPT-3.5-turbo</label>
     </div>
     <label for="timeframe">Choose a timeframe:</label>
