@@ -144,6 +144,13 @@
       <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo">
       <label for="gpt35turbo">GPT-3.5-turbo</label>
     </div>
+    <label for="timeframe">Choose a timeframe:</label>
+    <select name="timeframe" id="timeframe">
+      <option value="today 1-m">Past 1 month</option>
+      <option value="today 3-m">Past 3 months</option>
+      <option value="today 12-m">Past 12 months</option>
+      <option value="all">All time</option>
+    </select>
     <input type="submit" value="Find Top Niches">
   </form>
   {% if ideas_list is not none %}

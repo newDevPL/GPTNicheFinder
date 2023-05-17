@@ -9,7 +9,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 
 # Function to fetch Google Trends data
-def get_trends_data(keywords, category, timeframe='today 3-m', region='US'): # timeframe='today 3-m' means the last 3 months
+def get_trends_data(keywords, category, timeframe='today 12-m', region='US'): # timeframe='today 3-m' means the last 3 months
     pytrends = TrendReq(hl='en-GB', tz=360) # Set the language and timezone
     backoff_time = 5 # Set the initial backoff time to 5 seconds
 
@@ -199,7 +199,7 @@ def get_trend_slope(series):
     return slope
 
 
-def main(niches, category, region='', model_choice='gpt-4'):
+def main(niches, category, region='', model_choice='gpt-4', timeframe='today 12-m'):
     print(f"Starting main function with niches: {niches}, category: {category}, region: {region}, model_choice: {model_choice}")  # DEBUG
 
     # Initialize ideas_list
@@ -207,7 +207,7 @@ def main(niches, category, region='', model_choice='gpt-4'):
 
     # Fetch Google Trends data for the niches and category
     print("Fetching Google Trends data...")  # DEBUG
-    trends_data = get_trends_data(niches, category=category, region=region)
+    trends_data = get_trends_data(niches, category=category, region=region, timeframe=timeframe)
 
     # Get growing trends
     print("Getting growing trends...")  # DEBUG

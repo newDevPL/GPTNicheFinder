@@ -9,9 +9,10 @@ def index():
     if request.method == "POST":
         niche_input = request.form["niche_input"]
         model_choice = request.form["model_choice"]
+        timeframe = request.form['timeframe']  # Get the selected timeframe from the form
         niches = [niche.strip() for niche in niche_input.split(",")]
 
-        results = tshirt_trends.main(niches, 428, model_choice=model_choice) # Use 428 for "T-Shirts". You can lookup categories in the static/categories.json file
+        results = tshirt_trends.main(niches, 428, model_choice=model_choice, timeframe=timeframe) # Use 428 for "T-Shirts". You can lookup categories in the static/categories.json file
 # Filter out None values from ideas_list
         ideas_list = [x for x in results["ideas_list"] if x is not None]
         return render_template("index.html", ideas_list=results["ideas_list"], trends_data=results["trends_data"]) # Pass the ideas_list and trends_data to the template for rendering the results in the browser
