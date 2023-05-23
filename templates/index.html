@@ -139,10 +139,16 @@
     <input type="text" name="niche_input" value="{{ session.get('niche_input', '') }}" id="niche_input" required>
     <label for="model_choice">Choose a model:</label>
     <div class="radio-wrapper">
-      <input type="radio" id="gpt4" name="model_choice" value="gpt-4" {% if session.get('model_choice', '') == 'gpt-4' %}checked{% endif %}>
-      <label for="gpt4">GPT-4</label>
-      <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo" {% if session.get('model_choice', '') == 'gpt-3.5-turbo' or session.get('model_choice') is none %}checked{% endif %}>
-      <label for="gpt35turbo">GPT-3.5-turbo</label>
+      {% if openai_api_key %}
+        <input type="radio" id="gpt4" name="model_choice" value="gpt-4" {% if session.get('model_choice', '') == 'gpt-4' %}checked{% endif %}>
+        <label for="gpt4">GPT-4</label>
+        <input type="radio" id="gpt35turbo" name="model_choice" value="gpt-3.5-turbo" {% if session.get('model_choice', '') == 'gpt-3.5-turbo' or session.get('model_choice') is none %}checked{% endif %}>
+        <label for="gpt35turbo">GPT-3.5-turbo</label>
+      {% endif %}
+      {% if local_model_file %}
+        <input type="radio" id="localModel" name="model_choice" value="local" {% if session.get('model_choice', '') == 'local' %}checked{% endif %}>
+        <label for="localModel">Local Model</label>
+      {% endif %}
     </div>
     <label for="timeframe">Choose a timeframe:</label>
     <select name="timeframe" id="timeframe">

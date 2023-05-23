@@ -1,3 +1,6 @@
 __pycache__
 OpenAI.API
 env
+config.py
+ggml-gpt4-x-vicuna-13b-q5_1.bin
+model

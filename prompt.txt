@@ -1,4 +1,4 @@
-Based on the data you've been provided, generate a creative t-shirt design idea for the {niche} niche within the T-Shirt category. The {niche} niche has shown a recent surge in interest with a score of {recent_interest}. 
+Based on the data you have been provided, generate a creative t-shirt design idea for the {niche} niche within the T-Shirt category. The {niche} niche has shown a recent surge in interest with a score of {recent_interest}. 
 
 Please analyze the given data points: maximum interest score of {max_interest}, minimum interest score of {min_interest}, and average interest score of {mean_interest}. Use these data points to create a unique scoring algorithm that estimates the potential success of each idea.
 

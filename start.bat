@@ -6,7 +6,9 @@ call env\Scripts\activate.bat
 
 REM Upgrade pip and install required packages
 python -m pip install --upgrade pip
-python -m pip install pandas pytrends matplotlib pillow openai Flask scikit-learn
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1
+python -m pip install pandas pytrends matplotlib pillow openai Flask scikit-learn llama-cpp-python transformers torch
+
 
 REM Run the Python script
 python app.py

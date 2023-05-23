@@ -1,103 +1,120 @@
 import openai
-import os
 import re
-from utils import get_regions
+from llama_cpp import Llama
+from pandas import DataFrame
+from config import OPENAI_API_KEY, MML_MODEL_FILE
 
-def read_api_key(file_path="OpenAI.API"):
-    print(f"Reading API key from file: {file_path}")  # DEBUG
-    try:
-        with open(file_path, "r") as f:
-            api_key = f.readline().strip()
-            print("API key read successfully")  # DEBUG
-            return api_key
-    except FileNotFoundError as e:
-        print(f"Error reading API key: {e}")
-        return None
+class IdeaGenerator:
+    def __init__(self, api_key: str, model_file: str, prompt_file: str):
+        try:
+            self.model_file = model_file
+            self.prompt_file = prompt_file
+            self.prompt_file_path = prompt_file
+            self.llama_model = None
+            if model_file:
+                self.llama_model = Llama(model_path=model_file)
+                print("Model loaded successfully.")
+        except Exception as e:
+            print(f"Failed to initialize IdeaGenerator. Error: {e}")
+            raise
+        openai.api_key = OPENAI_API_KEY
+        print("API key set successfully.")
+        
+    def _generate_with_llama_cpp(self, prompt: str) -> dict:
+        try:
+            if self.llama_model is None:
+                raise ValueError("Llama model is not configured.")
+            return self.llama_model(prompt, max_tokens=150, stop=["User:"],
+                temperature=0.8,
+                top_p=0.95,
+                repeat_penalty=1.2,
+                top_k=50)
+        except Exception as e:
+            print(f"Failed to generate with Llama CPP. Error: {e}")
+            raise
 
-# Set up the OpenAI API key
-api_key = read_api_key()
-if api_key:
-    print("Setting OpenAI API key...")  # DEBUG
-    openai.api_key = api_key
-else:
-    print("No API key found")  # DEBUG
+    def _generate_with_openai(self, prompt: str, model: str, n: int) -> dict:
+        try:
+            return openai.ChatCompletion.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=700,
+                n=1,
+                stop=None,
+                temperature=0.5
+            )
+        except Exception as e:
+            print(f"Failed to generate with OpenAI. Error: {e}")
+            raise
 
+    def _generate_prompt(self, niche: str, category: str, trends_data: DataFrame) -> str:
+        try:
+            max_interest = trends_data.max()[0]
+            min_interest = trends_data.min()[0]
+            mean_interest = trends_data.mean()[0]
+            recent_interest = trends_data.iloc[-1][0]
 
-def generate_prompt(niche, category, trends_data):
-    print(f"Generating prompt for niche: {niche}, category: {category}")  # DEBUG
+            with open(self.prompt_file_path, 'r') as file:
+                prompt = file.read()
 
-    # Get the relevant data from the trends_data
-    max_interest = trends_data.max()[0]
-    min_interest = trends_data.min()[0]
-    mean_interest = trends_data.mean()[0]
-    recent_interest = trends_data.iloc[-1][0]
-    
-    print(f"Max interest: {max_interest}, Min interest: {min_interest}, Mean interest: {mean_interest}, Recent interest: {recent_interest}")  # DEBUG
+            return prompt.format(
+                niche=niche,
+                recent_interest=recent_interest,
+                max_interest=max_interest,
+                min_interest=min_interest,
+                mean_interest=mean_interest,
+                category=category
+            )
+        except Exception as e:
+            print(f"Failed to generate prompt. Error: {e}")
+            raise
 
-    # Read the prompt from a file
-    with open('prompt.txt', 'r') as file:
-        prompt = file.read()
-    
-    print(f"Initial prompt: {prompt}")  # DEBUG
+    @staticmethod
+    def _process_response(choice: dict, model_type: str) -> str:
+        try:
+            if model_type == "GPT":
+                return choice.message.content.strip()
+            elif model_type == "Llama":
+                content = choice['text'].strip()
+                return content.split('Example Output:\n')[-1]
+            else:
+                raise ValueError(f"Unknown model type: {model_type}")
+        except Exception as e:
+            print(f"Failed to process response. Error: {e}")
+            raise
 
-    # Replace the placeholder variables with the actual data
-    prompt = prompt.format(niche=niche,
-                           recent_interest=recent_interest,
-                           max_interest=max_interest,
-                           min_interest=min_interest,
-                           mean_interest=mean_interest,
-                           category=category)
-    
-    print(f"Final prompt: {prompt}")  # DEBUG
+    def generate_ideas(self, niche: str, category: str, trends_data: DataFrame, model="gpt-4", n=5) -> list:
+        try:
+            print("Starting idea generation...")
+            prompt = self._generate_prompt(niche, category, trends_data)
+            
+            if model == "local":
+                if self.llama_model is None:
+                    raise ValueError("Llama model is not configured.")
+                results = [self._generate_with_llama_cpp(prompt) for _ in range(n)]
+                model_type = "Llama"
+            else:
+                if OPENAI_API_KEY == "":
+                    raise ValueError("OpenAI API key is not configured.")
+                results = [self._generate_with_openai(prompt, model, n=1)]
+                model_type = "GPT"
 
-    return prompt
+            ideas = []
+            for result in results:
+                if result.get('choices'):
+                    for choice in result['choices']:
+                        content = self._process_response(choice, model_type)
+                        matches = re.findall(r"SLOGAN: (.*?)\nSDPROMPT: (.*?)\nSCORE: (\d+)", content, re.DOTALL)
+                        for match in matches:
+                            slogan, sdprompt, score = match
+                            ideas.append({
+                                "slogan": slogan.strip(),
+                                "sdprompt": sdprompt.strip(),
+                                "score": score.strip()
+                            })
 
-
-
-
-def generate_ideas(prompt, niche, model="gpt-4", n=10):
-    print(f"Generating ideas for niche: {niche}, using model: {model}")  # DEBUG
-    chat_prompt = (
-        f"User: {prompt}\n"
-        "AI:"
-    )
-
-    print(f"Chat prompt: {chat_prompt}")  # DEBUG
-
-    try:
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=700,
-            n=n,
-            stop=None,
-            temperature=0.5,
-        )
-
-        print(f"Response from OpenAI API: {response}")  # DEBUG
-
-        ideas = []
-        for choice in response['choices']:
-            content = choice.message.content.strip()
-            matches = re.findall(r"SLOGAN: (.*?)\nSDPROMPT: (.*?)\nSCORE: (\d+)", content, re.DOTALL)
-            for match in matches:
-                slogan, sdprompt, score = match
-                ideas.append({
-                    "slogan": slogan.strip(),
-                    "sdprompt": sdprompt.strip(),
-                    "score": score.strip()
-                })
-
-        return ideas
-
-    except openai.OpenAIError as e:
-        print(f"OpenAI API error: {e}")
-        print("This might be due to the server being overloaded with other requests. You can retry your request, or contact OpenAI through their help center at help.openai.com if the error persists.")
-        print(f"niche: {niche}")
-        return []  # return an empty list instead of None
-    except Exception as e:
-        print(f"Error generating ideas: {e}")
-        print(f"niche: {niche}")
-        return []  # return an empty list instead of None
+            print("Idea generation completed successfully.")
+            return ideas
+        except Exception as e:
+            print(f"Failed to generate ideas. Error: {e}")
+            raise
