@@ -50,3 +50,7 @@ We warmly welcome contributions to GPTNicheFinder! If you have ideas for enhance
 ## License:
 
 GPTNicheFinder is released under the Unlicense license, granting you the freedom to use, modify, and distribute the application without any restrictions. You can find the license details in the repository.
+
+
+If you like this project, consider donating some ETH: 0x202580B9639D6434316DBabcbadDE5a246468125
+
