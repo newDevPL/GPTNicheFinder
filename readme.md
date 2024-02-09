@@ -1,3 +1,8 @@
+UPDATE: I am aware of some issues with the code, stemming from updated dependencies and some end user variables that I did not account for; please use the issues section to raise any issues and I will deal with those as a priority. 
+If you want you can also try my GPTNicheFinder custom GPT (you will need GPT Premium subscription for this) which does similar thing and generates the design on the spot. You can test it here: ![image](https://github.com/newDevPL/GPTNicheFinder/assets/8698431/8320183e-c945-459b-8a2a-e8503c361d5c)
+
+
+
 # GPTNicheFinder - GitHub README
 
 Welcome to GPTNicheFinder, a robust niche research tool underpinned by Google Trends data and OpenAI's GPT model. This application presents a streamlined methodology for identifying profitable niche markets, utilizing data-driven insights, and the cutting edge of artificial intelligence. It is an ideal tool for entrepreneurs, marketers, and enthusiasts seeking undiscovered opportunities. GPTNicheFinder is designed to facilitate your search.
