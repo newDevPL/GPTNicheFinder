@@ -1,5 +1,7 @@
 UPDATE: I am aware of some issues with the code, stemming from updated dependencies and some end user variables that I did not account for; please use the issues section to raise any issues and I will deal with those as a priority. 
-If you want you can also try my GPTNicheFinder custom GPT (you will need GPT Premium subscription for this) which does similar thing and generates the design on the spot. You can test it here: ![image](https://github.com/newDevPL/GPTNicheFinder/assets/8698431/8320183e-c945-459b-8a2a-e8503c361d5c)
+If you want you can also try my GPTNicheFinder custom GPT (you will need GPT Premium subscription for this) which does similar thing and generates the design on the spot. You can test it here: https://chat.openai.com/g/g-nJkUTe5sS-gpt-niche-finder
+
+
 
 
 
